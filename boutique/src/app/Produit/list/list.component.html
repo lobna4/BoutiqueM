@@ -1,0 +1,38 @@
+<div *ngFor="let user of users">
+    <div *ngIf="this.user.idUser == 1">
+        <h1>Crud Admin</h1>
+        <div class="container">
+            <button (click)="NewProduit()" class="btn btn-info">Ajouter un produit</button>
+        </div>
+    </div>
+</div>
+<div class="form-group col-md-8" id="searchBar">
+    <input class="form-control" type="text" [(ngModel)]="searchTerm" (keyup)="Search($event)"
+        placeholder="rechercher vos produits">
+    <img type="button" class="cursor-pointer" src="">
+</div>
+<div id="cards-produit">
+    <div class="card" *ngFor="let produit of produits | filter: searchKey:'name'">
+
+        <div class="card-body">
+            <div *ngFor="let user of users">
+                <div *ngIf="this.user.idUser == 1">
+                    <p class="id-produit">ID:{{produit.id}}</p>
+                </div>
+            </div>
+            <h5 class="card-title">Nom du produit: {{produit.name}}</h5>
+            <p class="card-text">Description: {{produit.description}}</p>
+            <p class="card-duree">Prix: {{produit.prix}}</p>
+            <div *ngFor="let user of users">
+                <div *ngIf="this.user.idUser == 1">
+                    <div class="buttons">
+                        <button [routerLink]="['/edit', produit.id]" class="btn btn-warning"
+                            style="margin-left: 10px;">Edit</button>
+                        <button (click)="remove(produit.id)" class="btn btn-danger"
+                            style="margin-left: 10px;">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
